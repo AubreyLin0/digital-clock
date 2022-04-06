@@ -1,0 +1,172 @@
+html {
+  background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+  font-family: "helvetica neue";
+  text-align: center;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  font-size: 2rem;
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clock {
+  width: 35rem;
+  height: 35rem;
+  border: 20px solid rgba(83, 105, 118, 0.7);
+  border-radius: 50%;
+  margin: 50px auto;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+    inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.outer-clock-face {
+  background: #282828;
+  border-radius: 50%;
+  width: 35rem;
+  height: 35rem;
+  transform: translateY(-3px);
+  z-index: -1;
+  /* account for the height of the clock hands */
+}
+
+.outer-clock-face::after {
+  transform: rotate(90deg);
+}
+
+.outer-clock-face::after,
+.outer-clock-face::before,
+.outer-clock-face .marking {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background: #8bdb81;
+  z-index: 0;
+  left: 49%;
+}
+
+.outer-clock-face .marking {
+  background: #bdbdcb;
+  width: 3px;
+}
+
+.outer-clock-face .marking.marking-one {
+  transform: rotate(30deg);
+}
+
+.outer-clock-face .marking.marking-two {
+  transform: rotate(60deg);
+}
+
+.outer-clock-face .marking.marking-three {
+  transform: rotate(120deg);
+}
+
+.outer-clock-face .marking.marking-four {
+  transform: rotate(150deg);
+}
+
+.inner-clock-face {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: rgb(40, 40, 40);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  z-index: 1;
+}
+
+.inner-clock-face::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 18px;
+  margin-left: -9px;
+  margin-top: -6px;
+  background: #4d4b63;
+  z-index: 11;
+}
+
+.hand {
+  width: 50%;
+  right: 50%;
+  height: 6px;
+  background: #61afff;
+  position: absolute;
+  top: 50%;
+  border-radius: 6px;
+  transform-origin: 100%;
+  /* change the position from right start, the default is 50% that middle of the line. */
+  transform: rotate(90deg);
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hand.hour-hand {
+  width: 30%;
+  z-index: 3;
+}
+
+.hand.min-hand {
+  height: 3px;
+  z-index: 10;
+  width: 40%;
+}
+
+.hand.second-hand {
+  background: #ee791a;
+  width: 45%;
+  height: 2px;
+}
+
+.digital-clock {
+  color: #a3e4db;
+  font-size: 6rem;
+  font-family: "Righteous", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hour,
+.min,
+.seconds {
+  display: inline-block;
+  width: 8vw;
+}
+
+.colon {
+  font-weight: 800;
+  display: inline-block;
+}
+
+@media screen and (max-width: 595px) {
+  .outer-clock-face,
+  .clock {
+    width: 28rem;
+    height: 28rem;
+  }
+  .digital-clock {
+    font-size: 6rem;
+  }
+  .hour,
+  .min,
+  .seconds {
+    width: 15vw;
+  }
+}
